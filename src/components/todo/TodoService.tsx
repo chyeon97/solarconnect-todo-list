@@ -26,6 +26,10 @@ export const useTodo = () => {
   };
 
   const toggleTodo = (id: number) => {
+    const TodoArray = todoState.filter((todo: Itodo) => todo.id === id)
+    const UndoArray = todoState.filter((todo:Itodo)=> todo.id !== id)
+    const AllArray = TodoArray.concat(UndoArray)
+    setTodoState(AllArray)
     //@TODO
   };
 
