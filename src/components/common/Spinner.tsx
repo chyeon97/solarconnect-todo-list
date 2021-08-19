@@ -18,7 +18,7 @@ interface IWrapperProp {
 }
 
 const StyledSpinnerWrapper = styled(Row)<IWrapperProp>`
-	background-color: ${styleProps => (styleProps['data-mask'] ? 'rgba(0, 0, 0, 0.1)' : 'transparent')};
+	background-color: ${(styleProps: { [x: string]: any; }) => (styleProps['data-mask'] ? 'rgba(0, 0, 0, 0.1)' : 'transparent')};
 `;
 
 function Spinner(props: ISpinnerProps): ReactElement {
