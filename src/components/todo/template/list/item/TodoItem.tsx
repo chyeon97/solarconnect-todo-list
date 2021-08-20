@@ -1,5 +1,6 @@
 import { CheckOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
+import Modals from "modal/modal";
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
@@ -86,7 +87,7 @@ interface TodoItemProps {
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const [done, setDone] = useState(todo.done);
-
+  const [openModal, setOpenModal] = useState(false);
   const handleToggle = () => {
 
     done ? setDone(false) : setDone(true)
@@ -97,21 +98,27 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
     removeTodo(todo.id)
   };
 
+  const handleRevise = (status: boolean): void => {
+    setOpenModal(status)
+  }
   return (
-    <TodoItemBlock>
-      <CheckCircle done={done} onClick={handleToggle}>
-        {done && <CheckOutlined />}
-      </CheckCircle>
-      <Text done={done}>{todo.text}</Text>
-      <Date done={done}>{todo.date}</Date>
-      <Revise>
-        {done ? <></> : <EditOutlined />}
-      </Revise>
-      <Remove onClick={handleRemove}>
-        <DeleteOutlined />
-      </Remove>
-    </TodoItemBlock>
+    <>
+      <TodoItemBlock>
+        <CheckCircle done={done} onClick={handleToggle}>
+          {done && <CheckOutlined />}
+        </CheckCircle>
+        <Text done={done}>{todo.text}</Text>
+        <Date done={done}>{todo.date}</Date>
+        <Revise onClick={() => handleRevise(true)}>
+          {done ? <></> : <EditOutlined />}
+        </Revise>
+        <Remove onClick={handleRemove}>
+          <DeleteOutlined />
+        </Remove>
+      </TodoItemBlock>
 
+      <Modals open={openModal} handleRevise={handleRevise} />
+    </>
 
   );
 };

@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Modal, Button } from 'antd';
+import { css } from 'styled-components';
 
-export default function Modal() {
+interface OpenProps {
+    open: boolean,
+    handleRevise: (status: boolean) => void,
+}
+
+const Sample = css`
+    width:100px;
+    background-color: aliceblue;
+`
+
+function Modals({ open, handleRevise }: OpenProps) {
+
+    const handleCancel = () => {
+        handleRevise(false)
+    }
     return (
-        <>modal</>
+        <>
+            <Modal
+                visible={open}
+                title={'Revise'}
+                // onOk={handleCancel}
+                onCancel={handleCancel}
+
+            >
+                <input></input>
+
+            </Modal>
+
+        </>
     )
 }
+export default Modals;
