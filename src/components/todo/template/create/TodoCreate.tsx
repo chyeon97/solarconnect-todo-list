@@ -7,11 +7,10 @@ import { Itodo } from "components/todo/TodoService";
 import { DatePicker } from 'antd';
 
 const CircleButton = styled.button<{ open: boolean }>`
-  background: #33bb77;
+ ${({ theme }) => theme.flexSet()}
+  background: #f75359;
   width: 50px;
   height: 50px;
-  align-items: center;
-  justify-content: center;
   font-size: 60px;
   left: 50%;
   cursor: pointer;
@@ -20,9 +19,7 @@ const CircleButton = styled.button<{ open: boolean }>`
   border-radius: 50%;
   border: none;
   outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
 `;
 
 const InsertFormPositioner = styled.div`
@@ -48,7 +45,7 @@ const Input = styled.input`
   outline: none;
   font-size: 21px;
   box-sizing: border-box;
-  color: #119955;
+  color: #34314c;
   &::placeholder {
     color: #dddddd;
     font-size: 16px;

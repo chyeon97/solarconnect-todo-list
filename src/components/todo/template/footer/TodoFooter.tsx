@@ -3,16 +3,13 @@ import React from "react";
 import styled from "styled-components";
 
 const TodoFooterBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  ${({ theme }) => theme.flexSet('space-between', 'center', 'column')}
   padding-top: 24px;
   padding-bottom: 24px;
 `;
 
 const LeftText = styled.div`
-  color: #33bb77;
+  color: #473fe1;
   font-size: 18px;
 `;
 

@@ -27,7 +27,7 @@ const CheckCircle = styled.div<{ done: boolean }>`
   width: 20px;
   height: 20px;
   border-radius: 16px;
-  border: 1px solid #33bb77;
+  border: 2px solid #8283a7;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@ const CheckCircle = styled.div<{ done: boolean }>`
   ${(props) =>
     props.done &&
     css`
-      border: 1px solid #dddddd;
+      border: 2px solid #dddddd;
       color: #dddddd;
     `}
 `;
@@ -45,7 +45,7 @@ const CheckCircle = styled.div<{ done: boolean }>`
 const Text = styled.div<{ done: boolean }>`
   flex: 1;
   font-size: 16px;
-  color: #119955;
+  color: #343838;
   ${(props) =>
     props.done &&
     css`

@@ -15,10 +15,11 @@ const TodoTemplateBlock = styled.div`
 
   margin: 0 auto;
 
-  margin-top: 96px;
+  /* margin-top: 96px; */
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
+
 `;
 
 function TodoTemplate(props: any) {
