@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export type Itodo = {
   id: number;
   text: string;
+  date: string;
   done: boolean;
 };
 
@@ -22,12 +23,14 @@ export const useTodo = () => {
   }, [todoState]);
 
   const incrementNextId = () => {
-    nextIdState = nextIdState + 1;
+    nextIdState = Math.max.apply(Math, todoState.map(i => { return i.id }));
+    nextIdState === -Infinity ? (nextIdState = 1) : (nextIdState += 1)
+    return nextIdState
   };
 
   const toggleTodo = (id: number) => {
     const TodoArray = todoState.filter((todo: Itodo) => todo.id === id)
-    const UndoArray = todoState.filter((todo:Itodo)=> todo.id !== id)
+    const UndoArray = todoState.filter((todo: Itodo) => todo.id !== id)
     const AllArray = TodoArray.concat(UndoArray)
     setTodoState(AllArray)
     //@TODO
@@ -35,12 +38,13 @@ export const useTodo = () => {
 
   const removeTodo = (id: number) => {
     setTodoState((prevState) =>
-      prevState.filter((todo: Itodo) => todo.id === id)
+      prevState.filter((todo: Itodo) => todo.id !== id)
     );
   };
 
   const createTodo = (todo: Itodo) => {
-    const nextId = todoState.length + 1;
+
+    let nextId = incrementNextId()
     setTodoState((prevState) =>
       prevState.concat({
         ...todo,

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import moment from 'moment';
+import 'moment/locale/ko';
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
+import { DatePicker } from 'antd';
 
 const CircleButton = styled.button<{ open: boolean }>`
   background: #33bb77;
@@ -11,6 +14,7 @@ const CircleButton = styled.button<{ open: boolean }>`
   justify-content: center;
   font-size: 60px;
   left: 50%;
+  cursor: pointer;
   transform: translate(50%, 0%);
   color: white;
   border-radius: 50%;
@@ -27,6 +31,7 @@ const InsertFormPositioner = styled.div`
 `;
 
 const InsertForm = styled.form`
+  position:relative;
   display: flex;
   background: #eeeeee;
   padding-left: 40px;
@@ -36,7 +41,8 @@ const InsertForm = styled.form`
 `;
 
 const Input = styled.input`
-  padding: 12px;
+  position:relative;
+  padding: 10px 46px 10px 12px;
   border: 1px solid #dddddd;
   width: 100%;
   outline: none;
@@ -49,6 +55,7 @@ const Input = styled.input`
   }
 `;
 
+
 interface TodoCreateProps {
   nextId: number;
   createTodo: (todo: Itodo) => void;
@@ -60,8 +67,11 @@ const TodoCreate = ({
   createTodo,
   incrementNextId
 }: TodoCreateProps) => {
+  const dateFormat = 'YYYY/MM/DD';
+  const today = moment().format(dateFormat)
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const [date, setDate] = useState(today)
 
   const handleToggle = () => setOpen(!open);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -69,17 +79,29 @@ const TodoCreate = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
-
+    if (value === "") {
+      return
+    }
     createTodo({
       id: nextId,
       text: value,
+      date: date,
       done: false
     });
     incrementNextId(); // nextId 하나 증가
 
     setValue(""); // input 초기화
+    setDate(today); // date 오늘 날짜로 초기화
     setOpen(false); // open 닫기
   };
+
+  const onChangeDate = (value: any, dateString: string) => {
+    setDate(dateString)
+  }
+
+  const disableDate = (current: object) => {
+    return current && current < moment().endOf('day');
+  }
 
   return (
     <>
@@ -87,11 +109,20 @@ const TodoCreate = ({
         <InsertForm onSubmit={handleSubmit}>
           <Input
             autoFocus
-            placeholder="What's need to be done?"
+            placeholder={"What's need to be done ?"}
             onChange={handleChange}
             value={value}
           />
-
+          <DatePicker
+            inputReadOnly
+            disabledDate={disableDate}
+            allowClear={false}
+            value={moment(date)}
+            format={dateFormat}
+            placeholder="End date"
+            onChange={onChangeDate}
+            style={{ width: '30%', }}
+          />
           <CircleButton onClick={handleToggle} open={open}>
             <PlusCircleOutlined />
           </CircleButton>
