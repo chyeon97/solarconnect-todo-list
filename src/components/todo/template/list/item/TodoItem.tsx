@@ -1,4 +1,4 @@
-import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
+import { CheckOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
@@ -10,6 +10,15 @@ const Remove = styled.div`
   color: #E71D36;
   font-size: 16px;
 `;
+
+const Revise = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8283a7;
+  font-size: 16px;
+  width:5%;
+`
 
 const TodoItemBlock = styled.div`
   display: flex;
@@ -79,8 +88,8 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const [done, setDone] = useState(todo.done);
 
   const handleToggle = () => {
-    setDone(true)
-    todo.done = true
+
+    done ? setDone(false) : setDone(true)
     toggleTodo(todo.id)
   };
 
@@ -95,10 +104,15 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
       </CheckCircle>
       <Text done={done}>{todo.text}</Text>
       <Date done={done}>{todo.date}</Date>
+      <Revise>
+        {done ? <></> : <EditOutlined />}
+      </Revise>
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>
     </TodoItemBlock>
+
+
   );
 };
 
