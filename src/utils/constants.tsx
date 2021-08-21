@@ -25,7 +25,10 @@ export const days = [
     'Saturday',
 ]
 
+export const dateFormat = 'YYYY/MM/DD';
+
 export const Converter = {
     dates,
-    days
+    days,
+    dateFormat,
 }

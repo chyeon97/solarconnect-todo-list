@@ -1,6 +1,13 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"editor.formatOnType": true,
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"diffEditor.codeLens": true,
+	"prettier.enable": false,
+	"prettier.jsxSingleQuote": true,
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }

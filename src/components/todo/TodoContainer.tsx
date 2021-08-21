@@ -7,33 +7,33 @@ import TodoFooter from "./template/footer/TodoFooter";
 import React from "react";
 
 const TodoContainer = () => {
-  const {
-    todoState,
-    nextIdState,
-    incrementNextId,
-    toggleTodo,
-    removeTodo,
-    createTodo,
-  } = useTodo();
+	const {
+		todoState,
+		nextIdState,
+		incrementNextId,
+		toggleTodo,
+		removeTodo,
+		createTodo,
+		reviseTodo,
+	} = useTodo();
 
-  return (
-
-    <TodoTemplate>
-      <TodoHead />
-      <TodoCreate
-        nextId={nextIdState}
-        createTodo={createTodo}
-        incrementNextId={incrementNextId}
-      />
-      <TodoList
-        toggleTodo={toggleTodo}
-        removeTodo={removeTodo}
-        todos={todoState}
-      />
-      <TodoFooter todos={todoState} />
-    </TodoTemplate>
-
-  );
+	return (
+		<TodoTemplate>
+			<TodoHead />
+			<TodoCreate
+				nextId={nextIdState}
+				createTodo={createTodo}
+				incrementNextId={incrementNextId}
+			/>
+			<TodoList
+				toggleTodo={toggleTodo}
+				removeTodo={removeTodo}
+				reviseTodo={reviseTodo}
+				todos={todoState}
+			/>
+			<TodoFooter todos={todoState} />
+		</TodoTemplate>
+	);
 };
 
 export default TodoContainer;
