@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import styled from "styled-components";
 import { DatePicker } from "antd";
 import disableDate from "utils/disableDate";
@@ -9,7 +9,7 @@ import moment from "moment";
 import "moment/locale/ko";
 
 const Wrap = styled.div`
-	${({ theme }) => theme.flexSet("flex-start", "flex-start", "row")};
+	${({ theme }) => theme.flexSet("center", "center", "row")};
 `;
 
 const Container = styled.div`
@@ -22,6 +22,25 @@ const MyInput = styled.input`
 	border: 1px solid #a7a7a7;
 	border-radius: 3px;
 	padding: 4px;
+	&:focus {
+		outline: none;
+		border: 2px solid #7c7877;
+	}
+`;
+
+const Footer = styled.div`
+	${({ theme }) => theme.flexSet("flex-end", "center", "row")};
+`;
+
+const MyButton = styled.button<{ bcolor: string; color: string }>`
+	width: 80px;
+	height: 32px;
+	margin: 10px;
+	color: ${(props) => props.color};
+	border: none;
+	border-radius: 2px;
+	background-color: ${(props) => props.bcolor};
+	cursor: pointer;
 `;
 
 interface OpenProps {
@@ -57,15 +76,23 @@ const Modals = ({ open, handleRevise, reviseTodo, todo }: OpenProps) => {
 		<>
 			<Modal
 				centered
+				closable={false}
 				visible={open}
-				title={"Revise Todo Item"}
-				onCancel={handleCancel}
-				onOk={handleOk}
+				footer={[
+					<Footer>
+						<MyButton bcolor='#dedcee' color='#3E4348' onClick={handleCancel}>
+							Cancel
+						</MyButton>
+						<MyButton bcolor='#6a60a9' color='#fffcf0' onClick={handleOk}>
+							OK
+						</MyButton>
+					</Footer>,
+				]}
 			>
 				<Wrap>
 					<Container>
 						Todo
-						<MyInput value={value} onChange={handleInputChange} />
+						<MyInput autoFocus value={value} onChange={handleInputChange} />
 					</Container>
 					<Container>
 						End date
