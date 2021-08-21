@@ -1,13 +1,13 @@
 <br />
 <p align='middle'>
-  <a href='https://solarconnect-team2.netlify.app/'>
+  <a href='https://solarconnect-todo.netlify.app/'>
     <img src='https://www.solarconnect.kr/assets/img/common/sc-logo.svg' width="300px;" alt="LiveMD" />
   </a>
 </p>
-<h2 align='middle'><a href='https://solarconnect-team2.netlify.app/'>solarconnect.netlify.app</a></h2>
+<h2 align='middle'><a href='https://solarconnect-todo.netlify.app/'>solarconnect-todo.netlify.app</a></h2>
 <p align="middle">
 <img src="https://img.shields.io/github/languages/top/chyeon97/solarconnect-todo-list?color=lightblue&logo=Typescript"> </img>
-<img src="https://img.shields.io/github/repo-size/chyeon97/solarconnect-todo-list?color=%25&logo=Github"> </img>
+<img src="https://img.shields.io/github/repo-size/chyeon97/solarconnect-todo-list?color=%25&logo=Github"></img>
 </p>
 
 <br/>
